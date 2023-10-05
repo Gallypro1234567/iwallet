@@ -1,7 +1,7 @@
 name: iwallet
 version: 1.0.0+1
 publish_to: none
-description: A new Flutter project.
+description: Expense Tracker App
 environment: 
   sdk: '>=3.1.2 <4.0.0'
 
