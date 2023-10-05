@@ -27,7 +27,13 @@ class _TransactionDetailViewState extends State<TransactionDetailView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sổ giao dịch'),
+        title: Text(
+          'Sổ giao dịch',
+          style: Theme.of(context)
+              .textTheme
+              .titleMedium!
+              .copyWith(fontSize: 16, fontWeight: FontWeight.w400),
+        ),
         centerTitle: false,
         titleSpacing: 0.0,
         actions: [
