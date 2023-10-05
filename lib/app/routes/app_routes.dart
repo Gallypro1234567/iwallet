@@ -13,6 +13,7 @@ abstract class Routes {
   static const TRANSACTION_SUBMIT = _Paths.TRANSACTION_SUBMIT;
   static const CATEGORY = _Paths.CATEGORY;
   static const TRANSACTION_DETAIL = _Paths.TRANSACTION_DETAIL;
+  static const LOCATIONS = _Paths.LOCATIONS;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const TRANSACTION_SUBMIT = '/transaction-submit';
   static const CATEGORY = '/category';
   static const TRANSACTION_DETAIL = '/transaction-detail';
+  static const LOCATIONS = '/locations';
 }

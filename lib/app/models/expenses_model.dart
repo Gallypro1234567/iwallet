@@ -6,6 +6,9 @@ class Expenses {
   int? categoryId;
   String? categoryName;
   String? categoryType;
+  String? place;
+  String? placeLat;
+  String? placeLng;
   Expenses(
       {this.id,
       this.note,
@@ -13,7 +16,10 @@ class Expenses {
       this.amount,
       this.categoryId,
       this.categoryName,
-      this.categoryType});
+      this.categoryType,
+      this.place,
+      this.placeLat,
+      this.placeLng});
   Expenses.fromJson(Map<String, dynamic> json, {String? id}) {
     id = id;
     note = json["note"];
@@ -24,6 +30,9 @@ class Expenses {
     categoryId = json["category_id"];
     categoryName = json["category_name"];
     categoryType = json["category_type"];
+    place = json['place'];
+    placeLat = json['place_lat'];
+    placeLng = json['place_lng'];
   }
 
   Map<String, dynamic> toJson() {
@@ -37,6 +46,9 @@ class Expenses {
     data['category_id'] = categoryId;
     data['category_name'] = categoryName;
     data['category_type'] = categoryType;
+    data['place'] = place;
+    data['place_lat'] = placeLat;
+    data['place_lng'] = placeLng;
     return data;
   }
 }

@@ -4,11 +4,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:iwallet/app/common/application.dart';
-import 'package:iwallet/app/modules/initial/controllers/initial_controller.dart';
 import 'package:iwallet/app/modules/initial/views/initial_view.dart';
-import 'package:iwallet/app/routes/app_pages.dart';
-import 'package:iwallet/app/widgets/loading_dialog.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class LoginController extends GetxController {
   final googleSignIn = GoogleSignIn();

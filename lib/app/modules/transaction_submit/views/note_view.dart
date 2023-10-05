@@ -24,7 +24,7 @@ class _NoteViewState extends State<NoteView> {
       appBar: AppBar(
         elevation: 1.0,
         title: Text(
-          'Note',
+          'Ghi chú',
           style: Theme.of(context).textTheme.titleMedium!.copyWith(),
         ),
         leading: IconButton(
@@ -39,7 +39,7 @@ class _NoteViewState extends State<NoteView> {
               Get.back(result: note.value.text);
             },
             child: Text(
-              'Save'.toUpperCase(),
+              'Lưu'.toUpperCase(),
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.w600),

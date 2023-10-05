@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:iwallet/app/common/help_function.dart';
 import 'package:iwallet/app/modules/transaction_submit/views/note_view.dart';
 import 'package:iwallet/app/routes/app_pages.dart';
-import 'package:iwallet/app/widgets/app_bottom_picker.dart';
 import 'package:iwallet/app/widgets/app_input.dart';
 import 'package:iwallet/app/widgets/app_picker_item.dart';
 import 'package:pattern_formatter/pattern_formatter.dart';
@@ -36,7 +34,7 @@ class _TransactionSubmitViewState extends State<TransactionSubmitView> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Add Transaction',
+            'Thêm giao dịch',
             style: Theme.of(context).textTheme.titleMedium,
           ),
           leading: IconButton(
@@ -61,7 +59,7 @@ class _TransactionSubmitViewState extends State<TransactionSubmitView> {
                         }
                       : null,
                   child: Text(
-                    'Save'.toUpperCase(),
+                    'Lưu'.toUpperCase(),
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Theme.of(context).primaryColor,
                         fontWeight:
@@ -249,6 +247,37 @@ class _TransactionSubmitViewState extends State<TransactionSubmitView> {
                     ],
                   ),
                 ),
+                // AppPickerItem(
+                //   title: controller.location.value.name == null
+                //       ? 'Vị trí'
+                //       : controller.location.value.name!,
+                //   leading: Container(
+                //     width: 48,
+                //     padding: const EdgeInsets.all(8.0),
+                //     decoration: BoxDecoration(
+                //       color: Colors.red.withOpacity(0.1),
+                //       shape: BoxShape.circle,
+                //     ),
+                //     child: const Icon(Icons.location_on, color: Colors.red),
+                //   ),
+                //   onPressed: onAddLocation,
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(vertical: 4.0),
+                //   child: Row(
+                //     children: [
+                //       const SizedBox(
+                //         width: 48 + 16,
+                //       ),
+                //       Expanded(
+                //         child: Divider(
+                //           height: 1.0,
+                //           color: Theme.of(context).dividerColor,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -272,6 +301,14 @@ class _TransactionSubmitViewState extends State<TransactionSubmitView> {
         await Get.to(() => NoteView(note: controller.note.value.text));
     if (selected != null) {
       controller.note.value.text = selected;
+    }
+  }
+
+  void onAddLocation() async {
+    final selected = await Get.toNamed(Routes.LOCATIONS,
+        arguments: controller.location.value);
+    if (selected != null) {
+      selected.value = controller.location.value;
     }
   }
 }

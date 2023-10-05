@@ -8,8 +8,11 @@ class Application {
   static late SharedPreferences _pref;
   static String token = '';
   static bool get isLogin => token.isNotEmpty;
+
   //
   static User? user;
+  static String googleApiKey ='AIzaSyDg1evvc68xACuU2RsbBiV5uoF0vwVNM8Y';
+  //
 
   //
   static Future initApp() async {

@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:iwallet/app/common/application.dart';
 import 'package:iwallet/app/modules/initial/controllers/initial_controller.dart';
@@ -26,8 +25,8 @@ class ProfileController extends GetxController {
 
   void onLogOut() {
     cautionDialog(
-      'Signing out from this device?\n\n Your data on this device will be deleted. but you can always get them back once you sign in again.',
-      title: 'Notice',
+      'Đăng xuất khỏi thiết bị?\n\nDữ liệu của bạn trên thiết bị này sẽ bị xoá, nhưng bạn luôn có thể lấy lại khi đăng nhập lại.',
+      title: 'Nhắc nhở',
       onCancel: () {
         Get.back();
       },

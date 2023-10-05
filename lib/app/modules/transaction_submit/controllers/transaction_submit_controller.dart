@@ -1,14 +1,11 @@
-import 'dart:ffi';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:iwallet/app/common/application.dart';
 import 'package:iwallet/app/common/firebase_provider.dart';
-import 'package:iwallet/app/common/help_function.dart';
 import 'package:iwallet/app/models/category_model.dart';
 import 'package:iwallet/app/models/expenses_model.dart';
+import 'package:iwallet/app/models/location_model.dart';
 import 'package:iwallet/app/modules/transaction_submit/views/calendar_view.dart';
 import 'package:iwallet/app/widgets/app_bottom_picker.dart';
 import 'package:iwallet/app/widgets/loading_dialog.dart';
@@ -30,6 +27,7 @@ class TransactionSubmitController extends GetxController {
   var date = DateTime.now().obs;
   var timeEnum = DateEnum.today.obs;
   var note = TextEditingController().obs;
+  var location = ExLocation().obs;
   var id = ''.obs;
 
   var categories = <Category>[].obs;

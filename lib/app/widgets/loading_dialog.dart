@@ -36,8 +36,10 @@ void cautionDialog(String? content,
     String? title,
     Function()? onDismiss,
     Function()? onCancel}) async {
-  var titleWidget = Text(
-    title ?? "Caution!",
+  var titleWidget = Center(
+    child: Text(
+      title ?? "Caution!",
+    ),
   );
   var contentWidget = Text(
     content ?? 'Unknown error',

@@ -8,6 +8,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/initial/bindings/initial_binding.dart';
 import '../modules/initial/views/initial_view.dart';
+import '../modules/locations/bindings/locations_binding.dart';
+import '../modules/locations/views/locations_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/navigation/bindings/navigation_binding.dart';
@@ -78,6 +80,11 @@ class AppPages {
       name: _Paths.TRANSACTION_DETAIL,
       page: () => const TransactionDetailView(),
       binding: TransactionDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOCATIONS,
+      page: () => const LocationsView(),
+      binding: LocationsBinding(),
     ),
   ];
 }

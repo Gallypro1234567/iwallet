@@ -61,7 +61,6 @@ class AppInputText extends StatefulWidget {
 class _AppInputTextState extends State<AppInputText> {
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     Widget leadingWidget = const SizedBox(width: 16);
     Widget deleteAction = Container();
 

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:iwallet/app/common/application.dart';
 import 'package:iwallet/app/widgets/app_cached_network_image.dart';
 import 'package:iwallet/app/widgets/app_list_tile.dart';
 
@@ -28,7 +27,7 @@ class _ProfileViewState extends State<ProfileView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'More',
+          'Mở rộng',
           style: Theme.of(context).textTheme.titleMedium!.copyWith(),
         ),
         centerTitle: true,
@@ -74,8 +73,8 @@ class _ProfileViewState extends State<ProfileView> {
               ),
             ),
             AppListTitle(
-              title: 'My account',
-              subtitle: 'Free account',
+              title: 'Quản lý tài khoản',
+              subtitle: 'Tài khoản miễn phí',
               leading: const Icon(Icons.person),
               trailing: Icon(
                 Icons.keyboard_arrow_right,
@@ -86,7 +85,7 @@ class _ProfileViewState extends State<ProfileView> {
             const SizedBox(height: 40.0),
             ...[
               {
-                'title': 'Dark Mode',
+                'title': 'Chủ đề tối',
                 'icon': Icons.dark_mode,
                 'trailing': Obx(
                   () => CupertinoSwitch(
@@ -98,9 +97,9 @@ class _ProfileViewState extends State<ProfileView> {
                   controller.onChangeModeTheme();
                 },
               },
-              {'title': 'Help & Support', 'icon': Icons.help},
-              {'title': 'Settings', 'icon': Icons.settings},
-              {'title': 'About', 'icon': Icons.info}
+              {'title': 'Hỗ trợ', 'icon': Icons.help},
+              {'title': 'Cài đặt', 'icon': Icons.settings},
+              {'title': 'Giới thiệu', 'icon': Icons.info}
             ]
                 .map((e) => AppListTitle(
                       title: e['title'] as String,

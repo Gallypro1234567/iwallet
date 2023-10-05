@@ -1,11 +1,6 @@
-import 'dart:async';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:iwallet/app/widgets/app_button.dart';
-import 'package:iwallet/app/widgets/app_input.dart';
 
 import '../controllers/login_controller.dart';
 
@@ -31,7 +26,6 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -70,11 +64,11 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
               ),
               const SizedBox(height: 8.0),
               ...[
-                {
-                  'title': 'Continue with Apple',
-                  'icon': SvgPicture.asset('assets/icons/apple.svg'),
-                  'action': controller.googleAuthLogin,
-                },
+                // {
+                //   'title': 'Continue with Apple',
+                //   'icon': SvgPicture.asset('assets/icons/apple.svg'),
+                //   'action': controller.googleAuthLogin,
+                // },
                 {
                   'title': 'Continue with Google',
                   'icon': SvgPicture.asset('assets/icons/google.svg'),
@@ -85,11 +79,11 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                   'icon': SvgPicture.asset('assets/icons/facebook.svg'),
                   'action': controller.facebookAuthLogin,
                 },
-                {
-                  'title': 'Continue with mail',
-                  'icon': SvgPicture.asset('assets/icons/mail.svg'),
-                  'action': () {},
-                },
+                // {
+                //   'title': 'Continue with mail',
+                //   'icon': SvgPicture.asset('assets/icons/mail.svg'),
+                //   'action': () {},
+                // },
               ]
                   .map(
                     (e) => Padding(

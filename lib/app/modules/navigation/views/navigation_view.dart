@@ -1,24 +1,15 @@
 // ignore_for_file: dead_code
 
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:iwallet/app/common/help_function.dart';
-import 'package:iwallet/app/modules/budget/views/budget_view.dart';
-import 'package:iwallet/app/modules/home/views/home_view.dart';
 import 'package:iwallet/app/modules/profile/views/profile_view.dart';
 import 'package:iwallet/app/modules/transaction/views/transaction_view.dart';
 import 'package:iwallet/app/modules/transaction_submit/views/transaction_submit_view.dart';
 import 'package:iwallet/app/routes/app_pages.dart';
-import 'package:iwallet/app/widgets/app_button.dart';
-import 'package:iwallet/app/widgets/app_input.dart';
-import 'package:iwallet/app/widgets/app_list_tile.dart';
-import 'package:iwallet/app/widgets/app_picker_item.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../controllers/navigation_controller.dart';
@@ -52,12 +43,11 @@ class _NavigationViewState extends State<NavigationView> {
 
   Widget _buildMenuItem(String route) {
     String title = '';
-    String svgIcon = '';
+
     IconData? activeIcon;
-    IconData? unActiveIcon;
+
     SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle.light;
     bool isActive = false;
-    Color color = Get.isDarkMode ? Colors.white : Colors.black;
 
     if (route == controller.selected.value) {
       isActive = true;
@@ -67,43 +57,35 @@ class _NavigationViewState extends State<NavigationView> {
     switch (route) {
       case Routes.HOME:
         title = 'Home';
-        svgIcon = 'assets/icons/tabs/tab-home.svg';
+
         activeIcon = Icons.home;
-        unActiveIcon = Icons.home_outlined;
-        //systemUiOverlayStyle = SystemUiOverlayStyle.dark;
+
         break;
       case Routes.TRANSACTION:
         title = 'Transactions';
-        svgIcon = 'assets/icons/tabs/tab-transactions.svg';
+
         activeIcon = Icons.account_balance_wallet;
-        unActiveIcon = Icons.account_balance_wallet_outlined;
-        //systemUiOverlayStyle = SystemUiOverlayStyle.dark;
+
         break;
       case Routes.BUDGET:
         title = 'Budgets';
-        svgIcon = 'assets/icons/tabs/tab-budgets.svg';
+
         systemUiOverlayStyle = SystemUiOverlayStyle.dark;
         activeIcon = Icons.account_balance_wallet;
-        unActiveIcon = Icons.account_balance_wallet_outlined;
+
         break;
       case Routes.PROFILE:
         title = 'Accounts';
-        svgIcon = 'assets/icons/tabs/tab-account.svg';
+
         activeIcon = Icons.person;
-        unActiveIcon = Icons.person_outline;
-        //systemUiOverlayStyle = SystemUiOverlayStyle.dark;
+
         break;
       default:
         title = 'Home';
-        svgIcon = 'assets/icons/tabs/tab-home.svg';
+
         break;
     }
 
-    if (isActive) {
-      color = Theme.of(context).primaryColor;
-    } else {
-      color = Get.isDarkMode ? Colors.grey : const Color(0xff666666);
-    }
     return InkWell(
       onTap: () {
         controller.selected(route);

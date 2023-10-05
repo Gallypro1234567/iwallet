@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iwallet/app/common/help_function.dart';
 import 'package:iwallet/app/routes/app_pages.dart';
-import 'package:iwallet/app/widgets/app_input.dart';
 import 'package:iwallet/app/widgets/app_list_tile.dart';
 import 'package:iwallet/app/widgets/app_picker_item.dart';
-import 'package:pattern_formatter/pattern_formatter.dart';
 
 import '../controllers/transaction_detail_controller.dart';
 
