@@ -7,4 +7,4 @@ The official IWallet based on Flutter.
 2. Clone the repository locally
 3. Open the project in terminal
 4. Run `flutter pub get` in terminal
-6. To build release apk run `flutter build apk`
+6. To build release apk run `flutter build apk` or `flutter build ios`
