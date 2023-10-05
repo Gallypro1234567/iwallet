@@ -52,6 +52,14 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         initialRoute: AppPages.INITIAL,
         getPages: AppPages.routes,
+        builder: (context, child) {
+        final MediaQueryData data = MediaQuery.of(context);
+        var isTablet = data.size.height >= 850 && data.size.height < 1100;
+        return MediaQuery(
+          data: data.copyWith(textScaleFactor: isTablet ? 1.01 : 1),
+          child: child!,
+        );
+      },
       ),
     );
   }
