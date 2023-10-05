@@ -10,7 +10,7 @@
 ![z4757242238084_f91c7260044193a7a6f4f8aef7e0a206](https://github.com/Gallypro1234567/iwallet/assets/46000647/b0694e2c-fe59-49c2-a520-e50bd0bc1be2)
 ![z4757242230030_a5ee4c4cefd1ed47874fdd19aab18beb](https://github.com/Gallypro1234567/iwallet/assets/46000647/aa05ed3d-ab72-4c85-96ca-be6ce39a4348) 
 
-The official IWallet based on Flutter.
+The official IWallet, built using Flutter, is available for a demo at [platform](https://youtu.be/jnnWm8VtPmw).
 
 ## 🛠️ Building Manager from source
 1. Setup flutter environment for your [platform](https://docs.flutter.dev/get-started/install)
