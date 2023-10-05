@@ -62,17 +62,9 @@
 				<!-- TODO Replace this value: -->
 				<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
 				<string>com.googleusercontent.apps.638911413456-82ockc9ga8f1540q1j8226122p9114c1</string>
+				<string>fb1368687987410843</string>
 			</array>
 		</dict>
-	</array>
-	<key>CFBundleURLTypes</key>
-	<array>
-	<dict>
-	<key>CFBundleURLSchemes</key>
-	<array>
-		<string>fb1368687987410843</string>
-	</array>
-	</dict>
 	</array>
 	<key>FacebookAppID</key>
 	<string>1368687987410843</string>

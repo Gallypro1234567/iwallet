@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:iwallet/app/modules/initial/controllers/initial_controller.dart';
 
@@ -14,6 +17,8 @@ late final FirebaseApp app;
 late final FirebaseAuth auth;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  DartPluginRegistrant.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   app = await Firebase.initializeApp();
   auth = FirebaseAuth.instanceFor(app: app);
 
@@ -38,14 +43,16 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: "IWallet",
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: controller.themeMode.value,
-      debugShowCheckedModeBanner: false,
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
+    return Obx(
+      () => GetMaterialApp(
+        title: "IWallet",
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: controller.themeMode.value,
+        debugShowCheckedModeBanner: false,
+        initialRoute: AppPages.INITIAL,
+        getPages: AppPages.routes,
+      ),
     );
   }
 }

@@ -20,6 +20,7 @@ dependencies:
   cloud_firestore: 4.9.2
   sign_in_with_apple: 5.0.0
   flutter_facebook_auth: 6.0.2
+  scrollable_clean_calendar: 1.4.1
   flutter: 
     sdk: flutter
 

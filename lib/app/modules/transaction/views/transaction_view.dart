@@ -27,7 +27,7 @@ class _TransactionViewState extends State<TransactionView>
   List<DateTime> monthsList = [];
 
   int initialIndex = 0;
-  int currentIndex = 0;
+  var currentIndex = 0.obs;
   @override
   void initState() {
     super.initState();
@@ -44,11 +44,7 @@ class _TransactionViewState extends State<TransactionView>
         initialIndex = index;
       });
       _tabController.addListener(() {
-        setState(() {
-          currentIndex = _tabController.index;
-          print('current:' + currentIndex.toString());
-          print('initital:' + initialIndex.toString());
-        });
+        currentIndex.value = _tabController.index;
       });
     });
     controller.onInit();
@@ -57,21 +53,13 @@ class _TransactionViewState extends State<TransactionView>
   List<DateTime> getItem() {
     // ignore: no_leading_underscores_for_local_identifiers
     List<DateTime> _monthsList = [];
-
     DateTime now = DateTime.now();
+
     var future = DateTime(now.year, now.month + 1, now.day);
-    for (int i = 1; i <= 12; i++) {
+    for (int i = 0; i <= 12; i++) {
       late DateTime monthAgo;
-      if (i >= 12) {
-        int year = now.year - 1;
-        int month = i - 1;
-
-        if (month > 12) {
-          year--;
-          month -= 12;
-        }
-
-        monthAgo = DateTime(year, month, now.day);
+      if (i == 0) {
+        monthAgo = now;
       } else {
         monthAgo = DateTime(now.year, now.month - i, now.day);
       }
@@ -80,7 +68,6 @@ class _TransactionViewState extends State<TransactionView>
     _monthsList.sort(
         (a, b) => b.difference(now).abs().compareTo(a.difference(now).abs()));
     //
-    _monthsList.insert(_monthsList.length, now);
     _monthsList.insert(_monthsList.length, future);
     setState(() {
       monthsList.assignAll(_monthsList);
@@ -114,8 +101,11 @@ class _TransactionViewState extends State<TransactionView>
         child: Stack(
           children: [
             _buildContent(context),
-            if (currentIndex != initialIndex)
-              Positioned(
+            Obx(() {
+              if (currentIndex.value == initialIndex) {
+                return Container();
+              }
+              return Positioned(
                 top: 40,
                 right: 16,
                 child: InkWell(
@@ -141,7 +131,8 @@ class _TransactionViewState extends State<TransactionView>
                     ),
                   ),
                 ),
-              )
+              );
+            })
           ],
         ),
       ),
@@ -186,9 +177,7 @@ class _TransactionViewState extends State<TransactionView>
                         '${item.month.toString().padLeft(2, '0')}/${item.year}');
               }).toList(),
               onTap: (index) {
-                setState(() {
-                  currentIndex = _tabController.index;
-                });
+                currentIndex.value = _tabController.index;
               },
             ),
           ),
@@ -256,105 +245,117 @@ class _TransactionViewState extends State<TransactionView>
               .abs()
               .compareTo(b.key.difference(now).abs()));
           Map<DateTime, List<Expenses>> sortedMap = Map.fromEntries(entries);
-          return _buildTabView(sortedMap, context);
+          return _buildExpenseWithMonth(sortedMap, context);
         },
       ).toList(),
     );
   }
 
-  Widget _buildTabView(
+  Widget _buildExpenseWithMonth(
       Map<DateTime, List<Expenses>> groups, BuildContext context) {
     var input = 0.0.obs;
     var output = 0.0.obs;
+    if (groups.isEmpty) {
+      return Center(
+        child: Text(
+          'Không có giao dịch',
+          style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                fontSize: 16,
+                color: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .color!
+                    .withOpacity(0.4),
+              ),
+        ),
+      );
+    }
     return SingleChildScrollView(
       physics:
           const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       child: Column(
         children: [
-          if (groups.isNotEmpty)
-            Container(
-              padding: const EdgeInsets.all(24),
-              color: Theme.of(context).cardColor,
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Tiền vào',
-                        style:
-                            Theme.of(context).textTheme.bodyMedium!.copyWith(),
-                      ),
-                      Obx(
-                        () => Text(
-                          thousandSeparator(input.value, unit: 'đ'),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(fontWeight: FontWeight.w500),
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 8.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Tiền ra',
-                        style:
-                            Theme.of(context).textTheme.bodyMedium!.copyWith(),
-                      ),
-                      Obx(
-                        () => Text(
-                          thousandSeparator(output.value, unit: 'đ'),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(fontWeight: FontWeight.w500),
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 8.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * .3,
-                        child: Divider(
-                          height: 1.0,
-                          color: Theme.of(context).dividerColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '',
+          Container(
+            padding: const EdgeInsets.all(24),
+            color: Theme.of(context).cardColor,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Tiền vào',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
+                    ),
+                    Obx(
+                      () => Text(
+                        thousandSeparator(input.value, unit: 'đ'),
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium!
                             .copyWith(fontWeight: FontWeight.w500),
                       ),
-                      Obx(
-                        () => Text(
-                          thousandSeparator((input.value + output.value),
-                              unit: 'đ'),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(fontWeight: FontWeight.w500),
-                        ),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 8.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Tiền ra',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
+                    ),
+                    Obx(
+                      () => Text(
+                        thousandSeparator(output.value, unit: 'đ'),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(fontWeight: FontWeight.w500),
                       ),
-                    ],
-                  )
-                ],
-              ),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 8.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * .3,
+                      child: Divider(
+                        height: 1.0,
+                        color: Theme.of(context).dividerColor,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(fontWeight: FontWeight.w500),
+                    ),
+                    Obx(
+                      () => Text(
+                        thousandSeparator((input.value + output.value),
+                            unit: 'đ'),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ],
+                )
+              ],
             ),
+          ),
           const SizedBox(height: 22),
           ...groups.keys.map(
             (e) {

@@ -62,10 +62,10 @@ class _TransactionSubmitViewState extends State<TransactionSubmitView> {
                       : null,
                   child: Text(
                     'Save'.toUpperCase(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: Colors.blue),
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight:
+                            controller.validated() ? FontWeight.w600 : null),
                   ),
                 ),
               ),

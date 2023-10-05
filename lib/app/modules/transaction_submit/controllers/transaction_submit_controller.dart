@@ -9,13 +9,14 @@ import 'package:iwallet/app/common/firebase_provider.dart';
 import 'package:iwallet/app/common/help_function.dart';
 import 'package:iwallet/app/models/category_model.dart';
 import 'package:iwallet/app/models/expenses_model.dart';
+import 'package:iwallet/app/modules/transaction_submit/views/calendar_view.dart';
 import 'package:iwallet/app/widgets/app_bottom_picker.dart';
 import 'package:iwallet/app/widgets/loading_dialog.dart';
 
 enum DateEnum {
   today('Hôm nay', 'today'),
   yesterday('Hôm qua', 'yesterday'),
-  orther('Khác', 'orther');
+  orther('Tuỳ chỉnh', 'orther');
 
   final String title;
   final String value;
@@ -47,7 +48,7 @@ class TransactionSubmitController extends GetxController {
       date.value = data.date!;
       note.value.text = data.note ?? '';
       id.value = data.id!;
-    }  
+    }
     super.onInit();
   }
 
@@ -86,14 +87,19 @@ class TransactionSubmitController extends GetxController {
         return AppBottomPicker(
           picker: PickerModel(
             selected: [timeEnum.value],
-            data: [DateEnum.today, DateEnum.yesterday],
+            data: [DateEnum.today, DateEnum.yesterday, DateEnum.orther],
           ),
         );
       },
     );
     if (result != null) {
       timeEnum.value = result;
-      date.value = getTime(timeEnum.value);
+      if (timeEnum.value != DateEnum.orther) {
+        date.value = await getTime(timeEnum.value);
+      } else {
+        date.value =
+            await Get.to(() => const CalendarView()) as DateTime? ?? date.value;
+      }
     }
   }
 
@@ -116,7 +122,7 @@ class TransactionSubmitController extends GetxController {
     );
     if (Application.user != null) {
       loading();
-      if(isUpdate.value){}
+      if (isUpdate.value) {}
       var res = await FireStoreProvider.addExpense(
           Application.user!.uid, model.toJson());
       Get.back();
@@ -129,6 +135,7 @@ class TransactionSubmitController extends GetxController {
       cautionDialog(res.message, title: 'Thông báo');
     }
   }
+
   void onUpdate() async {
     var amountValue = double.tryParse(amount.value.text.replaceAll(',', ''));
     if (amountValue == null || amountValue < 0) {
@@ -148,9 +155,9 @@ class TransactionSubmitController extends GetxController {
     );
     if (Application.user != null) {
       loading();
-      if(isUpdate.value){}
+      if (isUpdate.value) {}
       var res = await FireStoreProvider.updateExpense(
-          Application.user!.uid, id.value , model.toJson());
+          Application.user!.uid, id.value, model.toJson());
       Get.back();
       if (res.success) {
         cautionDialog('Lưu thành công', title: 'Thông báo', onDismiss: () {
@@ -162,11 +169,8 @@ class TransactionSubmitController extends GetxController {
     }
   }
 
-  DateTime getTime(DateEnum value) {
+  Future<DateTime> getTime(DateEnum value) async {
     switch (value) {
-      case DateEnum.today:
-        DateTime now = DateTime.now();
-        return now;
       case DateEnum.yesterday:
         DateTime now = DateTime.now();
         return now.subtract(const Duration(days: 1));

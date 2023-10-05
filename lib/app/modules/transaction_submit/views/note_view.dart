@@ -40,10 +40,9 @@ class _NoteViewState extends State<NoteView> {
             },
             child: Text(
               'Save'.toUpperCase(),
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(color: Colors.blue),
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.w600),
             ),
           )
         ],

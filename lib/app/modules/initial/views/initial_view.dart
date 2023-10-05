@@ -22,7 +22,7 @@ class _InitialViewState extends State<InitialView> {
       (timeStamp) {
         Application.initApp().then(
           (_) async {
-            loading();
+            loading(context: context, loadingText: 'Đang tải');
             if (Application.isLogin) {
               Application.user = FirebaseAuth.instance.currentUser;
               controller.state.value = AuthenticationState.authenticated;

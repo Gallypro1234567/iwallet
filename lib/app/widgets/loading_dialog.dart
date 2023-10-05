@@ -4,15 +4,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void loading({String? loadingText, Function()? onCancel}) async {
+void loading(
+    {String? loadingText, Function()? onCancel, BuildContext? context}) async {
   await Get.dialog(
     Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const CupertinoActivityIndicator(),
+        CupertinoActivityIndicator(
+          color: context != null ? Theme.of(context).splashColor : null,
+        ),
         const SizedBox(height: 8.0),
         if (loadingText != null)
-          Obx(() => Text(loadingText, style: const TextStyle(fontSize: 16))),
+          Text(
+            loadingText,
+            style: context != null
+                ? Theme.of(context).textTheme.bodySmall!.copyWith(
+                    fontSize: 16,
+                    color: Theme.of(context).splashColor,
+                    fontWeight: FontWeight.w400)
+                : const TextStyle(fontSize: 16),
+          ),
       ],
     ),
     barrierDismissible: false,

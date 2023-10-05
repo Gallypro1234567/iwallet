@@ -14,7 +14,7 @@ class AppTheme {
   static const String Roboto = "Roboto";
   static const String defaultFont = Roboto;
   // colors
-  static const Color primaryColor = Color(0xff0061fe);
+  static const Color primaryColor = Color(0xff32CD32);
   static const Color backgroundWhiteColor = Color(0xfff2f2f2);
   static const Color backgroundDarkGreyColor = Color(0xff282828);
   // themes
