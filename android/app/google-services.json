@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "638911413456",
+    "project_id": "iwallet-b8952",
+    "storage_bucket": "iwallet-b8952.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638911413456:android:6700d24c038e33e02e32d5",
+        "android_client_info": {
+          "package_name": "com.trongtran.iwallet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638911413456-dfbv4lfnteki1mou120opt36d1m5833a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5pHb8AhGOzYAAacdSLknzk2LjeJKu6uE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638911413456-dfbv4lfnteki1mou120opt36d1m5833a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

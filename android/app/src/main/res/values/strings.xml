@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Iwallet</string>
+    <string name="facebook_app_id">1368687987410843</string>
+    <string name="fb_login_protocol_scheme">fb1368687987410843</string>
+    <string name="facebook_client_token">26c2ba5799ff8b4f0de57b8eb76709ef</string>
+</resources>

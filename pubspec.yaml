@@ -1,0 +1,51 @@
+name: iwallet
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=3.1.2 <4.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.2
+  get: 4.6.6
+  shared_preferences: 2.2.1
+  flutter_svg: 2.0.7
+  firebase_auth: 4.10.0
+  google_sign_in: 6.1.5
+  firebase_core: 2.16.0
+  cached_network_image: 3.3.0
+  modal_bottom_sheet: ^3.0.0-pre
+  pattern_formatter: 3.0.0
+  intl: 0.18.1
+  cloud_firestore: 4.9.2
+  sign_in_with_apple: 5.0.0
+  flutter_facebook_auth: 6.0.2
+  flutter: 
+    sdk: flutter
+
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  assets: 
+    - assets/images/
+    - assets/icons/
+  fonts: 
+    - family: Roboto
+      fonts: 
+        - asset: assets/fonts/roboto/Roboto-Regular.ttf
+        - asset: assets/fonts/roboto/Roboto-Italic.ttf
+        - asset: assets/fonts/roboto/Roboto-Bold.ttf
+        - asset: assets/fonts/roboto/Roboto-BoldItalic.ttf
+        - asset: assets/fonts/roboto/Roboto-Light.ttf
+        - asset: assets/fonts/roboto/Roboto-LightItalic.ttf
+        - asset: assets/fonts/roboto/Roboto-Medium.ttf
+        - asset: assets/fonts/roboto/Roboto-MediumItalic.ttf
+        - asset: assets/fonts/roboto/Roboto-Black.ttf
+        - asset: assets/fonts/roboto/Roboto-BlackItalic.ttf
+        - asset: assets/fonts/roboto/Roboto-Thin.ttf
+        - asset: assets/fonts/roboto/Roboto-ThinItalic.ttf
+  uses-material-design: true
+
